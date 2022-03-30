@@ -8,11 +8,20 @@ namespace Napilnic02
 {
     class Cart : ProductsContainer
     {
-        public string Paylink { get; private set; } = "Купить";
-
-        public Good[] Order()
+        public Order Order(Warehouse warehouse)
         {
-            throw new NotImplementedException();
+            Order order = new Order(GetProducts());
+            order.Pay(warehouse);
+            return order;
+        }
+
+        public void PrintGoods()
+        {
+            Console.WriteLine("В корзине:");
+            foreach (KeyValuePair<Good, int> item in GetProducts())
+            {
+                Console.WriteLine($"{item.Key.Id}: {item.Value}");
+            }
         }
     }
 }

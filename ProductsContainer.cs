@@ -8,7 +8,22 @@ namespace Napilnic02
 {
     class ProductsContainer
     {
-        private Dictionary<Good, int> _products = new Dictionary<Good, int>();
+        private Dictionary<Good, int> _products;
+
+        public ProductsContainer()
+        {
+            _products = new Dictionary<Good, int>();
+        }
+
+        public ProductsContainer(IEnumerable<KeyValuePair<Good, int>> goods)
+        {
+            _products = new Dictionary<Good, int>();
+
+            foreach (KeyValuePair<Good, int> item in goods)
+            {
+                _products.Add(item.Key, item.Value);
+            }
+        }
 
         public IEnumerable<KeyValuePair<Good, int>> GetProducts()
         {

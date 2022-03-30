@@ -24,10 +24,12 @@ namespace Napilnic02
             shop.GoodToCart(iPhone11, 3); //при такой ситуации возникает ошибка так, как нет нужного количества товара на складе
 
             //Вывод всех товаров в корзине
+            cart.PrintGoods();
 
-            //Console.WriteLine(cart.Order().Paylink);
 
-            cart.Add(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
+            Console.WriteLine(cart.Order(warehouse).Paylink);
+
+            shop.GoodToCart(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
         }
     }
 }
