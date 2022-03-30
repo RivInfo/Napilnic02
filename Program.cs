@@ -13,20 +13,23 @@ namespace Napilnic02
 
             Shop shop = new Shop(warehouse);
 
-            warehouse.Delive(iPhone12, 10);
-            warehouse.Delive(iPhone11, 1);
+            warehouse.Add(iPhone12, 10);
+            warehouse.Add(iPhone11, 1);
 
             //Вывод всех товаров на складе с их остатком
+            shop.PrintAllGoods();
 
             Cart cart = shop.Cart();
-            cart.Add(iPhone12, 4);
-            cart.Add(iPhone11, 3); //при такой ситуации возникает ошибка так, как нет нужного количества товара на складе
+            shop.GoodToCart(iPhone12, 4);
+            shop.GoodToCart(iPhone11, 3); //при такой ситуации возникает ошибка так, как нет нужного количества товара на складе
 
             //Вывод всех товаров в корзине
+            cart.PrintGoods();
 
-            Console.WriteLine(cart.Order().Paylink);
 
-            cart.Add(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
+            Console.WriteLine(cart.Order(warehouse).Paylink);
+
+            shop.GoodToCart(iPhone12, 9); //Ошибка, после заказа со склада убираются заказанные товары
         }
     }
 }
